@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation>
+
+
+	<item id="home" status="online" global="true" language="de_DE">
+  		<name>Home</name>
+  		<path>/</path>
+  		<title>Homepage</title>
+  		<linktitle>This is my homepage</linktitle>
+  		<content>home.html</content>
+  		<item id="news" status="online" global="true">
+	  		<name>News</name>
+	  		<path>/news</path>
+	  		<title>News</title>
+	  		<linktitle>News</linktitle>
+	  		<content>news.html</content>
+	  		<global>false</global>
+	  		<action default="true" do="news" test_param="1" />
+  		</item>
+  		<item id="examples" status="online" global="false">
+  			<name>Beispiele für Inhalte</name>
+  			<path>/beispiele</path>
+  			<item id="ueberschriften" status="online" global="false">
+	  			<name>Überschriten</name>
+	  			<path>/ueberschriften</path>
+  			</item>
+  			<item id="listen" status="online" global="false">
+	  			<name>Listen</name>
+	  			<path>/listen</path>
+  			</item>
+  		</item>
+  	</item>
+
+  		
+ 	<item id="impressum" status="online" global="true">
+  		<name>Impressum</name>
+  		<path>/impressum</path>
+  		<title>Impressum</title>
+  		<linktitle>Impressum</linktitle>
+  		<content>impressum.html</content>
+  	</item>
+ 	
+
+ 	
+</navigation>

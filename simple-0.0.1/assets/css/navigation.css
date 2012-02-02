@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+
+@media screen
+{
+	#navigation ul,
+	#navigation li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: inline;
+		background: transparent;
+	}
+	#navigation h4 {
+		display: none;
+	}
+	#navigation strong,
+	#navigation em {
+		font-style: normal;
+		font-weight: normal;
+	}
+	#navigation {
+		clear: left;
+	}
+	#navigation li {
+	}
+	
+}

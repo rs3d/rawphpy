@@ -1,0 +1,7 @@
+Options -FollowSymLinks +SymLinksIfOwnerMatch
+
+<IfModule mod_rewrite.c>
+  RewriteEngine Off
+</IfModule>
+
+#AllowOverride None
