@@ -1,0 +1,13 @@
+Caution! Very early alpha version!
+
+Start of a PHP5-/XML-Framework for rapid prototyping "small" html-websites with dynamic navigation und site structure defined in a XML-file.
+
+Done:
+-- folder structure
+-- Class for navigation elements <item>
+-- Class for parsing site xml-structure and outputting a nested navigation
+
+
+Next Steps:
+-- Logic for page rendering and action
+-- Documentation
