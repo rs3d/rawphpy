@@ -19,7 +19,7 @@ class Model_Navigation
 		if ($this -> config['modus'] == 'sitemap') {
 			 #$this -> config['root'] -> $init['directories']['root'];
 			 $this -> config['webhost'] =  $config -> webhost;
-			$test = $this -> walkSitemap ($model_data);
+		 	 $test = $this -> walkSitemap ($model_data);
 		}else {                
 			#show($model_data);
 			$test = $this -> walk ($model_data);

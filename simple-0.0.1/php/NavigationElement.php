@@ -58,7 +58,9 @@ class Model_NavigationElement extends SimpleXMLElement {
 	protected function setCurrent($url) {
 		$filter[] = 'url="'.$url.'"';
 		$element = current($this ->xpath_filter('//'.self::Container,$filter));
-		if (empty($element)) $element = current($this ->xpath_filter('//'.self::Container));
+		if (empty($element)) {
+			$element = current($this ->xpath_filter('//'.self::Container));	
+		} 
 		
 		$element -> _addAttribute('current', 1);
 		return $element;
@@ -154,6 +156,11 @@ class Model_NavigationElement extends SimpleXMLElement {
 	
 	
    	protected function _getURI() {
+   		 #echo $this -> getAttribute('path').' /:'.strpos($this -> getAttribute('path'),'/').'<br />';
+   		 if (strpos($this -> getAttribute('path'),'/') === 0 ) {
+   		 	return $this -> url = $this -> getAttribute('path');
+   		 }
+
    		 $path = '..';
 		 
 		 $return[] = $this -> getAttribute('path');
@@ -161,14 +168,22 @@ class Model_NavigationElement extends SimpleXMLElement {
          while ($object = $this -> xpath($path)) {
          	 //show($object[0]-> _deleteChild());
          	
-              if (!empty($object[0])) {
-              #	echo '1';
-              	   #show($object[0]-> _deleteChild());
-	               $path .= '/..';
-              	   $return[] = $object[0] -> getAttribute('path');
-				   
-              }
-          }
+            if (!empty($object[0])) {
+            		$path .= '/..';
+               		$return[] = $object[0] -> getAttribute('path').'/';
+               #show($object[0]-> _deleteChild());
+               /*if (strpos($this -> getAttribute('path'),'/') != 0) {
+	           		$path .= '/..';
+               		$return[] = '/'.$object[0] -> getAttribute('path');
+			    } elseif (strpos($this -> getAttribute('path'),'/') ===0) {
+            		$return[] = ''.$object[0] -> getAttribute('path').'/';
+             		break;
+            	}elseif(empty($object[0])) {
+            		break;
+            	}
+            	*/
+            }
+         }
 		 $return = array_filter($return);
 		
 		 

@@ -5,4 +5,3 @@ include ('functions.php');
 include ('IndexController.php');
 
 new IndexController();
-?>

@@ -28,11 +28,26 @@
 	  			<name>Listen</name>
 	  			<path>/listen</path>
   			</item>
+
+          <item id="url-nesting" status="online" global="false">
+            <name>Autonesting URLs</name>
+            <path>autonestingurls</path>
+             <item id="url-nesting2" status="online" global="false">
+                <name>Autonesting URLs 2</name>
+                <path>autonestingurls2</path>
+            </item>
+          </item>
+        </item>
+        <item id="redirect" status="online" global="false">
+          <name>Redirection to google.com</name>
+          <path>/redirect</path>
+          <redirect>http://www.google.com/</redirect>
+        </item>
   		</item>
-  	</item>
+
 
   		
- 	<item id="impressum" status="online" global="true">
+ 	<item id="auto()" status="online" global="true">
   		<name>Impressum</name>
   		<path>/impressum</path>
   		<title>Impressum</title>

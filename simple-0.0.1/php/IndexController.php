@@ -2,8 +2,8 @@
 /** 
   * rawphpy 0.0.1
   *
-  * A Framework approach for rapid prototyping websites based
-  * on a simple structure definition in XML and PHP
+  * A PHP framework approach for rapid prototyping websites based
+  * on simple structure definition in XML
   *
 **/
 class IndexController {
@@ -26,8 +26,10 @@ class IndexController {
 	 * array('page'),
 	 * );
      *
-	 *static private $ActionParam = array('test' => array('overview' => 0 // page/overview/[0-n]
-	), );
+	 * static private $ActionParam = array('test' => array('overview' => 0 // 
+	 * page/overview/[0-n]
+	 * 
+	 * AUTO: ID, PATH, TITLE, CONTENT !REDUNDANZ!
 	 */
 
 	protected $_model;
@@ -40,7 +42,7 @@ class IndexController {
   		$this -> page_id = $this -> page -> getAttribute('id');
 		$this -> view = $this -> configuration = $this -> _setView();
 		
-
+		$this -> _do ();
 		#show($this->page);
 
 	}
@@ -56,18 +58,16 @@ class IndexController {
 			
 			require_once 'NavigationElement.php';
 			$xmldata = file_get_contents(BASE_PATH .'/cfg/'. $this -> config['xml']['navigation-pub']);
-    	    $this->_model = Model_NavigationElement::_new($xmldata, $URI);
-       		
-			echo self::$URI;
-			
+    	    $this->_model = Model_NavigationElement::_new($xmldata, $URI);   		
+			#echo self::$URI;
 			$this->_model->init(self::$URI);
-			
-
 			
         }
         return $this->_model;
 	}
+
 	protected function _do ($action = 'render') {
+		$this -> _getRouting();
 		/** setRouting, setContent, setRender **/
 	}
 
@@ -76,7 +76,27 @@ class IndexController {
 	}
 
 	protected function _getRouting() {
-		#forwead
+		/*
+		echo '<hr />';
+		echo $this->page->getAttribute('path');
+		echo '<br />';
+		show(self::$URI);
+		echo '<br />';
+		echo($this->page->path);
+		echo '<br />';
+		show($this -> page);
+		*/
+		if ($this->page-> url != self::$URI) {
+			header("HTTP/1.0 404 Not Found");
+
+			echo ('<h1>404 | URI: '.self::$URI.'</h1>');
+			show($this -> _model);
+		}elseif($this->page->redirect) {
+			die('<h1>301 | URI: '.$this->page->redirect.'</h1>');
+			header ('location: '.$this->page->redirect,TRUE,301);
+		}else {
+			show($this -> page);
+		}
 	}
 
 	protected function _setParam() {
