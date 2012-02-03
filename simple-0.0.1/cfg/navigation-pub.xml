@@ -26,7 +26,7 @@
   			</item>
   			<item id="listen" status="online" global="false">
 	  			<name>Listen</name>
-	  			<path>/listen</path>
+	  			<path>listen</path>
   			</item>
 
           <item id="url-nesting" status="online" global="false">

@@ -163,33 +163,31 @@ class Model_NavigationElement extends SimpleXMLElement {
 
    		 $path = '..';
 		 
-		 $return[] = $this -> getAttribute('path');
-       	 #show($this);
+		
          while ($object = $this -> xpath($path)) {
          	 //show($object[0]-> _deleteChild());
-         	
-            if (!empty($object[0])) {
-            		$path .= '/..';
-               		$return[] = $object[0] -> getAttribute('path').'/';
-               #show($object[0]-> _deleteChild());
-               /*if (strpos($this -> getAttribute('path'),'/') != 0) {
-	           		$path .= '/..';
-               		$return[] = '/'.$object[0] -> getAttribute('path');
-			    } elseif (strpos($this -> getAttribute('path'),'/') ===0) {
-            		$return[] = ''.$object[0] -> getAttribute('path').'/';
-             		break;
-            	}elseif(empty($object[0])) {
-            		break;
-            	}
-            	*/
+         	$path .= '/..';
+            if (!empty($object[0]) && strpos($object[0]-> getAttribute('path'),'/') !== 0) {
+            	$return[] = $object[0] -> getAttribute('path').'/';
+             
+            }elseif(!empty($object[0]) &&  $object[0] -> getAttribute('path') == '/' ) {
+	           	$return[] = '/';
+            	$return[] = '/';
+            	break;
+            }elseif(!empty($object[0]) &&  $object[0] -> getAttribute('path') != '/' ) {
+
+            	$return[] = $object[0] -> getAttribute('path').'/';
+            	break;
+            }else {
+            	break;
             }
          }
+       
 		 $return = array_filter($return);
 		
 		 
 		 $return = array_reverse($return);
-		 #show ($return);
-		  if  ($return[0] == '/' && sizeof($return) > 1) array_shift($return);
+		 if  ($return[0] == '/' && sizeof($return) > 1) array_shift($return);
 		 
 		 $this -> url = implode('',$return);
          return $return;
